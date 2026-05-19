@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import API from "../api";
 
 function Dashboard() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/events")
+    axios.get(`${API}/api/events`)
       .then(res => setEvents(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -38,7 +39,7 @@ function Dashboard() {
 
       if (!newTitle) return;
 
-      axios.put(`http://localhost:5000/api/events/update/${event._id}`, {
+      axios.put(`${API}/api/events/update/${event._id}`, {
         title: newTitle,
         date: event.date,
         location: event.location,
@@ -53,7 +54,7 @@ function Dashboard() {
   <button
     className="btn btn-danger btn-sm"
     onClick={() => {
-      axios.delete(`http://localhost:5000/api/events/${event._id}`)
+      axios.delete(`${API}/api/events/${event._id}`)
         .then(() => window.location.reload());
     }}
   >
