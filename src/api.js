@@ -1,2 +1,2 @@
-const API = "https://your-backend.onrender.com";
+const API = "https://college-event-portal-f92w.onrender.com";
 export default API;
